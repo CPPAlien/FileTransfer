@@ -1,4 +1,6 @@
 # FileTransfer
+![](https://github.com/CPPAlien/FileTransfer/raw/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
+
 Transfer any files from PC to your phone easily.
 
 [![Usage Video](http://7xq276.com2.z0.glb.qiniucdn.com/filetransfer_cover.jpg)](https://www.youtube.com/watch?v=NUNaORa1YzM)

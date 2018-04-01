@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FileTransfer</string>
+    <string name="wlan_enabled">Server is enabled</string>
+    <string name="wlan_disabled">Server is disabled</string>
+    <string name="pls_check_network_state">Please check network settings</string>
+    <string name="fail_to_start_http_service">Start HTTP server failed</string>
+    <string name="retrofit_wlan_address">Retrieving wlan address&#8230;</string>
+    <string name="pls_input_the_following_address_in_pc_browser">Please open the following address</string>
+    <string name="click_to_enable_server">Click icon above to enable server</string>
+    <string name="cancel">Cancel</string>
+    <string name="disappear">Hide</string>
+    <string name="ok">Sure</string>
+    <string name="set_network">Set network</string>
+    <string name="http_address">http://%1$s:%2$d</string>
+    <string name="permission_setting">permission request</string>
+    <string name="permission_need_des">The App needs the permission to save files in sdcard</string>
+    <string name="permission_go">enable permission</string>
+    <string name="empty_text">Empty now\nClick the button below, and start file transfer～</string>
+    <string name="install">Install</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="app_name_format">%1$s(v%2$s)</string>
+    <string name="no_program_open_it">Cannot open it</string>
+    <string name="sure_delete_all">Delete All？</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+</resources>

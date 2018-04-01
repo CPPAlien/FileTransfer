@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.growingio.android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 2
+        versionName "1.0.1"
+        resValue("string", "growingio_project_id", "8979dc98cc52320f")
+        resValue("string", "growingio_url_scheme", "growing.1f3e3791e1d6aee5")
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibilityVersion
+        targetCompatibility rootProject.ext.targetCompatibilityVersion
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: "*.jar")
+    implementation deps.supportAppCompat
+    implementation deps.supportDesign
+    implementation deps.butterknife
+    implementation deps.swipeRevealLayout
+    implementation deps.glide
+    implementation deps.growingio
+    annotationProcessor deps.glideCompiler
+    annotationProcessor deps.butterknifeCompiler
+    implementation(deps.rxbus) {
+        exclude group: 'com.jakewharton.timber', module: 'timber'
+    }
+    implementation deps.androidasync
+    implementation deps.timber
+}

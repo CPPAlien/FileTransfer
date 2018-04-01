@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#32A14A</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWifiConnected">#6495ED</color>
+    <color name="white">#FFFFFF</color>
+    <color name="google_red">#EB4537</color>
+    <color name="google_yellow">#FAC230</color>
+</resources>

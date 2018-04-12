@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.1.0"
         resValue("string", "growingio_project_id", "8979dc98cc52320f")
         resValue("string", "growingio_url_scheme", "growing.1f3e3791e1d6aee5")
     }

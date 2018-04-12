@@ -20,6 +20,7 @@
     <string name="uninstall">卸载</string>
     <string name="app_name_format">%1$s(v%2$s)</string>
     <string name="no_program_open_it">未安装可以打开此文件的应用</string>
+    <string name="delete_all">全部删除</string>
     <string name="sure_delete_all">确定全部删除吗？</string>
     <string name="share">分享</string>
     <string name="delete">删除</string>

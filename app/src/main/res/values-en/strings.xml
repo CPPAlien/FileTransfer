@@ -21,6 +21,7 @@
     <string name="uninstall">Uninstall</string>
     <string name="app_name_format">%1$s(v%2$s)</string>
     <string name="no_program_open_it">Cannot open it</string>
+    <string name="delete_all">Delete All</string>
     <string name="sure_delete_all">Delete All？</string>
     <string name="share">Share</string>
     <string name="delete">Delete</string>

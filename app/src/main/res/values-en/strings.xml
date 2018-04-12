@@ -25,4 +25,7 @@
     <string name="sure_delete_all">Delete All？</string>
     <string name="share">Share</string>
     <string name="delete">Delete</string>
+    <string name="upload">Upload Files</string>
+    <string name="read_file_failed">File fetch failed</string>
+    <string name="please_refresh_web">Upload success, please refresh web page</string>
 </resources>

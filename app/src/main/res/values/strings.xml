@@ -24,4 +24,7 @@
     <string name="sure_delete_all">确定全部删除吗？</string>
     <string name="share">分享</string>
     <string name="delete">删除</string>
+    <string name="upload">上传文件</string>
+    <string name="read_file_failed">文件读取失败</string>
+    <string name="please_refresh_web">上传成功，请刷新网页端</string>
 </resources>

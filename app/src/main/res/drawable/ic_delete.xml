@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (c) 2018 CPPAlien
+  ~
+  ~ Licensed under the GNU GENERAL PUBLIC LICENSE, Version 3, 29 June 2007 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://github.com/CPPAlien/FileTransfer/blob/master/LICENSE
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="16dp"
+        android:height="16dp"
+        android:viewportWidth="1024.0"
+        android:viewportHeight="1024.0">
+    <path
+        android:pathData="M178,946q-1,0 -3,-1l1,0.5 2,0.5zM170,942q-3,-2 -5,-3 2,1 5,3zM950.5,203.5q-10.5,-10.5 -26.5,-10.5h-184L740,135q0,-29 -21,-49.5t-50,-20.5h-314q-30,0 -50.5,20.5t-20.5,49.5v58L99,193q-15,0 -25.5,10.5t-10.5,25 10.5,25 25.5,10.5h31v623q0,29 21,49.5t50,20.5h632q29,0 50,-20.5t21,-49.5L904,264h20q15,0 26,-10.5t11,-25 -10.5,-25zM354,136h315v57h-315L354,136zM833,887L201,887L201,264h632v623zM511.5,384q-14.5,0 -25,10.5t-10.5,25.5v334q0,15 10.5,25.5t25,10.5 25,-10.5 10.5,-25.5L547,420q0,-15 -10.5,-25.5T511.5,384zM317,384q-15,0 -25.5,10.5t-10.5,25.5v334q0,15 10.5,25.5t25.5,10.5 25.5,-10.5 10.5,-25.5L353,420q0,-15 -10.5,-25.5T317,384zM704,384q-15,0 -25.5,10.5t-10.5,25.5v334q0,15 10.5,25.5t25.5,10.5 25.5,-10.5 10.5,-25.5L740,420q0,-15 -10.5,-25.5T704,384z"
+        android:fillColor="#ffffff"/>
+</vector>

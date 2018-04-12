@@ -99,20 +99,18 @@
                     android:textColor="#8e8e93"
                     android:textSize="12sp"
                     tools:text="7.8M" />
-                <TextView
+                <ImageView
                     android:id="@+id/tv_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_delete"
                     android:background="@drawable/shape_red_bg_frame10"
                     android:ellipsize="end"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="2dp"
-                    android:singleLine="true"
-                    android:text="@string/uninstall"
-                    android:textColor="@color/white" />
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"/>
             </LinearLayout>
         </LinearLayout>
     </com.chauthai.swipereveallayout.SwipeRevealLayout>

@@ -2,7 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/test_menu1"
+        android:id="@+id/add_files"
+        android:icon="@drawable/ic_add"
+        android:title="@string/upload"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/delete_all"
         android:icon="@mipmap/more"
         android:title="@string/delete_all"/>
 </menu>

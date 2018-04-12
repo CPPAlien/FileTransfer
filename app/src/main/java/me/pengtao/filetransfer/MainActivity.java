@@ -3,6 +3,8 @@ package me.pengtao.filetransfer;
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -28,6 +30,7 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.Toast;
 
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
@@ -35,6 +38,7 @@ import com.hwangjr.rxbus.annotation.Tag;
 import com.hwangjr.rxbus.thread.EventThread;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +53,7 @@ import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
     private static final int WRITE_PERMISSION_CODE = 1;
+    private static final int FILE_FETCH_CODE = 2;
     Unbinder mUnbinder;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -107,10 +112,18 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         setSupportActionBar(mToolbar);
 
         mToolbar.setOnMenuItemClickListener(item -> {
-            if (item.getItemId() == R.id.test_menu1) {
-                if (!mFileModelList.isEmpty()) {
-                    showDialog();
-                }
+            switch (item.getItemId()) {
+                case R.id.delete_all:
+                    if (!mFileModelList.isEmpty()) {
+                        showDialog();
+                    }
+                    break;
+                case R.id.add_files:
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    intent.setType("*/*");
+                    startActivityForResult(intent, FILE_FETCH_CODE);
+                    break;
             }
             return false;
         });
@@ -305,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     /**
      * 判断相对应的APP是否存在
      *
-     * @param context context
+     * @param context                                                                  context
      * @param packageName(包名)(若想判断QQ，则改为com.tencent.mobileqq，若想判断微信，则改为com.tencent.mm)
      * @return
      */
@@ -335,5 +348,27 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
             }
         }
         RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent
+            data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_FETCH_CODE && resultCode == Activity.RESULT_OK) {
+            Uri uri = data.getData();
+            if (uri != null) {
+                try {
+                    ContentResolver content = getContentResolver();
+                    FileUtils.copyFile(content.openInputStream(data.getData()), Constants.DIR
+                            + File.separator + FileUtils.getFileName(this, uri));
+                    Toast.makeText(this, R.string.please_refresh_web, Toast.LENGTH_LONG).show();
+                    RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
+                } catch (IOException e) {
+                    Toast.makeText(this, R.string.read_file_failed, Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, R.string.read_file_failed, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

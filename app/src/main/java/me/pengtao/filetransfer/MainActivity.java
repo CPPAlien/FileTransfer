@@ -285,13 +285,14 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         File dir = Constants.DIR;
         if (dir.exists() && dir.isDirectory()) {
             File[] files = dir.listFiles();
+            if (files == null) {
+                return;
+            }
 
             FileUtils.sortWithLastModified(files);
-            if (files != null) {
-                mFileModelList.clear();
-                for (File file : files) {
-                    handleFiles(file.getAbsolutePath(), file.length());
-                }
+            mFileModelList.clear();
+            for (File file : files) {
+                handleFiles(file.getAbsolutePath(), file.length());
             }
         }
         runOnUiThread(() -> {

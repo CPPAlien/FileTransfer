@@ -311,4 +311,46 @@ public class FileUtils {
             }
         });
     }
+
+    /**
+     * Writes a byte array to a file creating the file if it does not exist.
+     *
+     * @param file  the file to write to
+     * @param data  the content to write to the file
+     * @param append if {@code true}, then bytes will be added to the
+     * end of the file rather than overwriting
+     * @throws IOException in case of an I/O error
+     * @since IO 2.1
+     */
+    public static void writeByteArrayToFile(File file, byte[] data, boolean append) throws IOException {
+        OutputStream out = null;
+        try {
+            out = openOutputStream(file, append);
+            out.write(data);
+            out.close(); // don't swallow close Exception if copy completes normally
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
+
+    private static FileOutputStream openOutputStream(File file, boolean append) throws IOException {
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                throw new IOException("File '" + file + "' exists but is a directory");
+            }
+            if (!file.canWrite()) {
+                throw new IOException("File '" + file + "' cannot be written to");
+            }
+        } else {
+            File parent = file.getParentFile();
+            if (parent != null) {
+                if (!parent.mkdirs() && !parent.isDirectory()) {
+                    throw new IOException("Directory '" + parent + "' could not be created");
+                }
+            }
+        }
+        return new FileOutputStream(file, append);
+    }
 }

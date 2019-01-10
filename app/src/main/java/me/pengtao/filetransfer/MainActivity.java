@@ -4,6 +4,8 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -47,13 +49,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import me.pengtao.filetransfer.util.FileType;
 import me.pengtao.filetransfer.util.FileUtils;
+import me.pengtao.filetransfer.util.FileType;
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
     private static final int WRITE_PERMISSION_CODE = 1;
     private static final int FILE_FETCH_CODE = 2;
+    private String mAlreadyWrited = "";
     Unbinder mUnbinder;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -124,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                     intent.setType("*/*");
                     startActivityForResult(intent, FILE_FETCH_CODE);
                     break;
+                default:
+                    break;
             }
             return false;
         });
@@ -132,6 +137,27 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         initRecyclerView();
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_PERMISSION_CODE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard != null && clipboard.hasPrimaryClip() && clipboard.getPrimaryClip() != null) {
+            ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+            if (item != null && item.getText() != null && item.getText().length() > 0 && !item.getText().equals(mAlreadyWrited)) {
+                File file = new File(Constants.DIR, "clipboard_" + String.valueOf(System.currentTimeMillis()) + ".txt");
+                try {
+                    FileUtils.writeByteArrayToFile(file, item.getText().toString().getBytes(), false);
+                    Toast.makeText(this, "已把剪切板中内容写入到该文件中", Toast.LENGTH_SHORT).show();
+                    RxBus.get().post(Constants.RxBusEventType.LOAD_BOOK_LIST, 0);
+                    mAlreadyWrited = item.getText().toString();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "文件写入失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     @Override

@@ -44,5 +44,5 @@ ext.deps = [
         swipeRevealLayout  : "com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1",
         glide              : 'com.github.bumptech.glide:glide:4.6.1',
         glideCompiler      : 'com.github.bumptech.glide:compiler:4.6.1',
-        growingio          : 'com.growingio.android:vds-android-agent:2.3.0@aar'
+        growingio          : 'com.growingio.android:vds-android-agent:2.3.0@aar',
 ]

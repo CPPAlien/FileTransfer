@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.growingio.android'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "1.1.0"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 5
+        versionName "1.2.0"
         resValue("string", "growingio_project_id", "8979dc98cc52320f")
         resValue("string", "growingio_url_scheme", "growing.1f3e3791e1d6aee5")
     }

@@ -11,7 +11,7 @@ Transfer any files from PC to your phone easily.
 
 Video: https://v.qq.com/x/page/x0618rp8w9x.html
 
-APK: https://fir.im/transfer
+APK: http://d.6short.com/transfer
 
 ### What Next
 1, Two-way transfer between PC and Phone. 

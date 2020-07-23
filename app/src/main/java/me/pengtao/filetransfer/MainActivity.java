@@ -53,6 +53,9 @@ import me.pengtao.filetransfer.util.FileUtils;
 import me.pengtao.filetransfer.util.FileType;
 import timber.log.Timber;
 
+/**
+ * @author chris
+ */
 public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
     private static final int WRITE_PERMISSION_CODE = 1;
     private static final int FILE_FETCH_CODE = 2;
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                     Intent intent = new Intent();
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     intent.setType("*/*");
+                    intent.addCategory(Intent.CATEGORY_OPENABLE);
                     startActivityForResult(intent, FILE_FETCH_CODE);
                     break;
                 default:

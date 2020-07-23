@@ -3,7 +3,7 @@
     <string name="app_name">FileTransfer</string>
     <string name="wlan_enabled">Server is enabled</string>
     <string name="wlan_disabled">Server is disabled</string>
-    <string name="pls_check_network_state">Please check network settings</string>
+    <string name="pls_check_network_state">Connecting device should in same WIFI, \n or connected the hotspot of this device</string>
     <string name="fail_to_start_http_service">Start HTTP server failed</string>
     <string name="retrofit_wlan_address">Retrieving wlan address&#8230;</string>
     <string name="pls_input_the_following_address_in_pc_browser">Please open the following address</string>
@@ -11,7 +11,8 @@
     <string name="cancel">Cancel</string>
     <string name="disappear">Hide</string>
     <string name="ok">Sure</string>
-    <string name="set_network">Set network</string>
+    <string name="copy_toast">Copied, open in browser of connected device</string>
+    <string name="set_network">Copy Address</string>
     <string name="http_address">http://%1$s:%2$d</string>
     <string name="permission_setting">permission request</string>
     <string name="permission_need_des">The App needs the permission to save files in sdcard</string>

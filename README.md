@@ -3,7 +3,7 @@
 
 Transfer any files from PC to your phone easily.
 
-[![Usage Video](http://7xq276.com2.z0.glb.qiniucdn.com/filetransfer_cover1.jpg)](https://www.youtube.com/watch?v=NUNaORa1YzM)
+https://www.youtube.com/watch?v=NUNaORa1YzM
 
 [![](http://7xq276.com2.z0.glb.qiniucdn.com/google_play.png)](https://play.google.com/store/apps/details?id=me.pengtao.filetransfer)
 

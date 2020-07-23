@@ -1,14 +1,12 @@
 package me.pengtao.filetransfer;
 
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,19 +16,19 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hwangjr.rxbus.RxBus;
-import com.hwangjr.rxbus.annotation.Subscribe;
-import com.hwangjr.rxbus.annotation.Tag;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import me.pengtao.filetransfer.receiver.WifiConnectChangedReceiver;
 import me.pengtao.filetransfer.util.WifiUtils;
-import timber.log.Timber;
 
+/**
+ * @author chris
+ */
 public class PopupMenuDialog {
     private Unbinder mUnbinder;
     @BindView(R.id.popup_menu_title)
@@ -47,12 +45,9 @@ public class PopupMenuDialog {
     Button mBtnWifiSettings;
     @BindView(R.id.shared_wifi_button_split_line)
     View mButtonSplitLine;
-    private WifiConnectChangedReceiver mWifiConnectChangedReceiver = new WifiConnectChangedReceiver();
     private Context context;
     private Dialog dialog;
     private Display display;
-    private boolean mIsServerEnabled;
-    private boolean mIsWifiAvailable;
 
     public PopupMenuDialog(Context context) {
         this.context = context;
@@ -94,9 +89,10 @@ public class PopupMenuDialog {
     }
 
     public void show() {
-        checkWifiState(WifiUtils.getWifiConnectState(context));
         dialog.show();
-        registerWifiConnectChangedReceiver();
+        String ip = WifiUtils.getDeviceIpAddress();
+        onWifiConnected(ip);
+        WebService.start(context);
     }
 
     @OnClick({R.id.shared_wifi_cancel, R.id.shared_wifi_settings})
@@ -108,99 +104,31 @@ public class PopupMenuDialog {
             case R.id.shared_wifi_settings:
                 context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
                 break;
+            default:
+                break;
         }
-    }
-
-    void registerWifiConnectChangedReceiver() {
-        IntentFilter intentFilter = new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION);
-        context.registerReceiver(mWifiConnectChangedReceiver, intentFilter);
-    }
-
-    void unregisterWifiConnectChangedReceiver() {
-        context.unregisterReceiver(mWifiConnectChangedReceiver);
-    }
-
-    @Subscribe(tags = {@Tag(Constants.RxBusEventType.WIFI_CONNECT_CHANGE_EVENT)})
-    public void onWifiConnectStateChanged(NetworkInfo.State state) {
-        checkWifiState(state);
-    }
-
-    void checkWifiState(NetworkInfo.State state) {
-        if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
-            if (state == NetworkInfo.State.CONNECTED) {
-                String ip = WifiUtils.getWifiIp(context);
-                if (!TextUtils.isEmpty(ip)) {
-                    mIsWifiAvailable = true;
-                    onWifiConnected(ip);
-                    WebService.start(context);
-                    return;
-                }
-            }
-            onWifiConnecting();
-            return;
-        }
-        mIsWifiAvailable = false;
-        onWifiDisconnected();
-    }
-
-    void onWifiDisconnected() {
-        mTxtTitle.setText(R.string.wlan_disabled);
-        mTxtTitle.setTextColor(context.getResources().getColor(android.R.color.black));
-        mTxtSubTitle.setVisibility(View.VISIBLE);
-        mImgLanState.setImageResource(R.drawable.shared_wifi_shut_down);
-        mTxtStateHint.setText(R.string.fail_to_start_http_service);
-        mTxtAddress.setText("");
-        mButtonSplitLine.setVisibility(View.VISIBLE);
-        mBtnWifiSettings.setVisibility(View.VISIBLE);
-    }
-
-    void onWifiConnecting() {
-        mTxtTitle.setText(R.string.wlan_enabled);
-        mTxtTitle.setTextColor(context.getResources().getColor(R.color.colorWifiConnected));
-        mTxtSubTitle.setVisibility(View.GONE);
-        mImgLanState.setImageResource(R.drawable.shared_wifi_enable);
-        mTxtStateHint.setText(R.string.retrofit_wlan_address);
-        mTxtAddress.setText("");
-        mButtonSplitLine.setVisibility(View.GONE);
-        mBtnWifiSettings.setVisibility(View.GONE);
     }
 
     void onWifiConnected(String ipAddr) {
         mTxtTitle.setText(R.string.wlan_enabled);
         mTxtTitle.setTextColor(context.getResources().getColor(R.color.colorWifiConnected));
-        mTxtSubTitle.setVisibility(View.GONE);
         mImgLanState.setImageResource(R.drawable.shared_wifi_enable);
         mTxtStateHint.setText(R.string.pls_input_the_following_address_in_pc_browser);
-        mTxtAddress.setText(String.format(context.getString(R.string.http_address), ipAddr, Constants.HTTP_PORT));
-        mButtonSplitLine.setVisibility(View.GONE);
-        mBtnWifiSettings.setVisibility(View.GONE);
-    }
-
-    @OnClick(R.id.shared_wifi_state)
-    public void onWifiStateClick() {
-        if (!mIsWifiAvailable) {
-            return;
-        }
-        if (mIsServerEnabled) {
-            WebService.stop(context);
-            mTxtTitle.setText(R.string.wlan_disabled);
-            mTxtTitle.setTextColor(context.getResources().getColor(android.R.color.black));
-            mTxtSubTitle.setVisibility(View.GONE);
-            mImgLanState.setImageResource(R.drawable.shared_wifi_shut_down);
-            mTxtAddress.setText("");
-            mTxtStateHint.setText(R.string.click_to_enable_server);
-        } else {
-            checkWifiState(WifiUtils.getWifiConnectState(context));
-        }
-        mIsServerEnabled = !mIsServerEnabled;
+        String address = String.format(context.getString(R.string.http_address), ipAddr, Constants.HTTP_PORT);
+        mTxtAddress.setText(address);
+        mBtnWifiSettings.setOnClickListener(v -> {
+            ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData mClipData = ClipData.newPlainText("Label", address);
+            cm.setPrimaryClip(mClipData);
+            Toast.makeText(context, context.getString(R.string.copy_toast), Toast.LENGTH_LONG).show();
+        });
     }
 
     void onDialogDismiss(DialogInterface dialog) {
-        Timber.d("dialog dismiss!");
         if (mUnbinder != null) {
             mUnbinder.unbind();
             RxBus.get().post(Constants.RxBusEventType.POPUP_MENU_DIALOG_SHOW_DISMISS, Constants.MSG_DIALOG_DISMISS);
-            unregisterWifiConnectChangedReceiver();
+            //unregisterWifiConnectChangedReceiver();
             RxBus.get().unregister(PopupMenuDialog.this);
         }
     }

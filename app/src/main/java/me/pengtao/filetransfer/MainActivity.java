@@ -4,8 +4,6 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -49,8 +47,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import me.pengtao.filetransfer.util.FileUtils;
 import me.pengtao.filetransfer.util.FileType;
+import me.pengtao.filetransfer.util.FileUtils;
 import timber.log.Timber;
 
 /**
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     @Override
     protected void onResume() {
         super.onResume();
-        ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+        /*ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboard != null && clipboard.hasPrimaryClip() && clipboard.getPrimaryClip() != null) {
             ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
             if (item != null && item.getText() != null && item.getText().length() > 0 && !item.getText().equals(mAlreadyWrited)) {
@@ -161,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                     Toast.makeText(this, "文件写入失败", Toast.LENGTH_SHORT).show();
                 }
             }
-        }
+        }*/
     }
 
     @Override

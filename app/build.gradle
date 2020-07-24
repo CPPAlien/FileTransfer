@@ -1,17 +1,14 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.growingio.android'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 5
+        targetSdkVersion 29
+        versionCode 6
         versionName "1.2.0"
-        resValue("string", "growingio_project_id", "8979dc98cc52320f")
-        resValue("string", "growingio_url_scheme", "growing.1f3e3791e1d6aee5")
     }
     compileOptions {
         sourceCompatibility rootProject.ext.sourceCompatibilityVersion
@@ -35,7 +32,6 @@ dependencies {
     implementation deps.butterknife
     implementation deps.swipeRevealLayout
     implementation deps.glide
-    implementation deps.growingio
     annotationProcessor deps.glideCompiler
     annotationProcessor deps.butterknifeCompiler
     implementation(deps.rxbus) {

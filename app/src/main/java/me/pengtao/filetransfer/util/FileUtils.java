@@ -122,7 +122,7 @@ public class FileUtils {
 
     private static int checkStringEnds(String item, String[] array) {
         for (int i = 0; i < array.length; i++) {
-            if (item.endsWith(array[i])) {
+            if (item.toLowerCase().endsWith(array[i])) {
                 return i;
             }
         }

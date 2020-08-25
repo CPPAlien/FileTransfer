@@ -14,6 +14,7 @@ $(function() {
 	
 	function initPageStrings() {
 		document.title = STRINGS.WIFI_TRANS_TITLE;
+		$('#logo .wifi').text(STRINGS.WIFI_TRANS_TITLE);
 		$('.content_title').text(STRINGS.FILES_ON_DEVICE);
 		$('.table_header .filename').text(STRINGS.FILENAME);
 		$('.table_header .size').text(STRINGS.FILE_SIZE);

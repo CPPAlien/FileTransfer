@@ -1,0 +1,27 @@
+var STRINGS = {};
+
+STRINGS.WIFI_TRANS_TITLE = 'File Transfer';
+STRINGS.FILES_ON_DEVICE = 'File list';
+STRINGS.FILENAME = 'Name';
+STRINGS.FILE_SIZE = 'Size';
+STRINGS.FILE_OPER = 'Action';
+STRINGS.CONFIRM_DELETE_BOOK = 'Delete？';
+STRINGS.DOWNLOAD_FILE = 'Download file';
+STRINGS.DELETE_FILE = 'Delete file';
+STRINGS.USE_ONE_BROWSER = 'Upload failed. Please do not upload on multiple browser same time.';
+STRINGS.UPLOAD_FAILED = 'Upload failed. Reopen this page and try again';
+STRINGS.UNSUPPORTED_FILE_TYPE = 'The file type is unsupported';
+STRINGS.FILE_IN_QUEUE = 'File is uploading';
+STRINGS.FILE_EXISTS = 'File is exist, please delete and try again';
+STRINGS.YOU_CHOOSE = 'You chose';
+STRINGS.CHOSEN_FILE_COUNT = 'file(s)，but limit';
+STRINGS.VALID_CHOSEN_FILE_COUNT = 'file(s)。\nPlease choose file，file name cannot be same';
+STRINGS.CANCEL = 'Cancel';
+STRINGS.SELECT_YOUR_FILES = 'Choose the files you want to upload';
+STRINGS.SUPPORTED_FILE_TYPES = 'Support the type';
+STRINGS.CANNOT_CONNECT_SERVER = 'Connect failed, refresh the page and try again.';
+STRINGS.DRAG_TO_HERE = "drag files here";
+STRINGS.SELECT_BUTTON_LABLE1 = "Choose files";
+STRINGS.SELECT_BUTTON_LABLE2 = "multiple files supported";
+STRINGS.SELECT_BUTTON_LABLE = "Choose files";
+STRINGS.WIFI_AVAILABLE = "WiFi is connected";

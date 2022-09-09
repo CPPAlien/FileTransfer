@@ -16,15 +16,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Menu;
@@ -32,6 +23,16 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
@@ -78,9 +79,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
             Context otherAppCtx = context.createPackageContext(packageName, Context
                     .CONTEXT_IGNORE_SECURITY);
             List<Integer> displayMetrics = new ArrayList<>();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                displayMetrics.add(DisplayMetrics.DENSITY_XXXHIGH);
-            }
+            displayMetrics.add(DisplayMetrics.DENSITY_XXXHIGH);
             displayMetrics.add(DisplayMetrics.DENSITY_XXHIGH);
             displayMetrics.add(DisplayMetrics.DENSITY_XHIGH);
             displayMetrics.add(DisplayMetrics.DENSITY_HIGH);

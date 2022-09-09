@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "316341165060",
+    "project_id": "filetransfer-94133",
+    "storage_bucket": "filetransfer-94133.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316341165060:android:2e482b94aa90d4cb39e951",
+        "android_client_info": {
+          "package_name": "me.pengtao.filetransfer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316341165060-a1m5kcjqdj9tsmttcjkvelb5dqnq2kaf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAROoKJ20QLdInkc9fq0-uCSESAfGIVxRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316341165060-a1m5kcjqdj9tsmttcjkvelb5dqnq2kaf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
